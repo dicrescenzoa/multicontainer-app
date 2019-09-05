@@ -10,10 +10,10 @@ script:
   - docker run -e CI=true dicrescenzoa/react-test npm run test
 
 after_success:
-  - docker build -t dicrescenzoa/multiapp-client -f ./packages/client/
-  - docker build -t dicrescenzoa/multiapp-nginx -f ./packages/nginx/
-  - docker build -t dicrescenzoa/multiapp-server -f ./packages/server/
-  - docker build -t dicrescenzoa/multiapp-worker -f ./packages/worker/
+  - docker build -t dicrescenzoa/multiapp-client ./packages/client
+  - docker build -t dicrescenzoa/multiapp-nginx ./packages/nginx
+  - docker build -t dicrescenzoa/multiapp-server ./packages/server
+  - docker build -t dicrescenzoa/multiapp-worker ./packages/worker
   - echo "$DOCKER_PWD" | docker login -u "$DOCKER_ID" --password-stdin
   - docker push dicrescenzoa/multiapp-client
   - docker push dicrescenzoa/multiapp-nginx
